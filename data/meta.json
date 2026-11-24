@@ -1,0 +1,179 @@
+{
+  "app": "PromptTantu",
+  "version": "1.0.0",
+  "source": "Response_Mode_100000_Prompts_Gemini_Workflow.zip",
+  "count": 100000,
+  "first_id": "P50001",
+  "last_id": "P150000",
+  "category_count": 20,
+  "categories": [
+    {
+      "id": "01",
+      "name": "Photo Compositing & Identity",
+      "count": 5000,
+      "start": "P50001",
+      "end": "P55000",
+      "file": "data/categories/01.json.gz"
+    },
+    {
+      "id": "02",
+      "name": "Portraits, Fashion & Realism",
+      "count": 5000,
+      "start": "P55001",
+      "end": "P60000",
+      "file": "data/categories/02.json.gz"
+    },
+    {
+      "id": "03",
+      "name": "Image Restoration & Selective Editing",
+      "count": 5000,
+      "start": "P60001",
+      "end": "P65000",
+      "file": "data/categories/03.json.gz"
+    },
+    {
+      "id": "04",
+      "name": "Gemini Prompt Library & SDK Workflows",
+      "count": 5000,
+      "start": "P65001",
+      "end": "P70000",
+      "file": "data/categories/04.json.gz"
+    },
+    {
+      "id": "05",
+      "name": "AI Agents & Workflow Automation",
+      "count": 5000,
+      "start": "P70001",
+      "end": "P75000",
+      "file": "data/categories/05.json.gz"
+    },
+    {
+      "id": "06",
+      "name": "Writing, Editing & Communication",
+      "count": 5000,
+      "start": "P75001",
+      "end": "P80000",
+      "file": "data/categories/06.json.gz"
+    },
+    {
+      "id": "07",
+      "name": "Research, Search & Fact Checking",
+      "count": 5000,
+      "start": "P80001",
+      "end": "P85000",
+      "file": "data/categories/07.json.gz"
+    },
+    {
+      "id": "08",
+      "name": "Academic, IEEE Papers & Lab Reports",
+      "count": 5000,
+      "start": "P85001",
+      "end": "P90000",
+      "file": "data/categories/08.json.gz"
+    },
+    {
+      "id": "09",
+      "name": "Data Analysis & Visualization",
+      "count": 5000,
+      "start": "P90001",
+      "end": "P95000",
+      "file": "data/categories/09.json.gz"
+    },
+    {
+      "id": "10",
+      "name": "Python Engineering & Automation",
+      "count": 5000,
+      "start": "P95001",
+      "end": "P100000",
+      "file": "data/categories/10.json.gz"
+    },
+    {
+      "id": "11",
+      "name": "Web, Android & UI Engineering",
+      "count": 5000,
+      "start": "P100001",
+      "end": "P105000",
+      "file": "data/categories/11.json.gz"
+    },
+    {
+      "id": "12",
+      "name": "Debugging, Testing & Reliability",
+      "count": 5000,
+      "start": "P105001",
+      "end": "P110000",
+      "file": "data/categories/12.json.gz"
+    },
+    {
+      "id": "13",
+      "name": "Business Strategy & Market Decisions",
+      "count": 5000,
+      "start": "P110001",
+      "end": "P115000",
+      "file": "data/categories/13.json.gz"
+    },
+    {
+      "id": "14",
+      "name": "Marketing, Copywriting & Conversion",
+      "count": 5000,
+      "start": "P115001",
+      "end": "P120000",
+      "file": "data/categories/14.json.gz"
+    },
+    {
+      "id": "15",
+      "name": "Creator Branding, Images & Video",
+      "count": 5000,
+      "start": "P120001",
+      "end": "P125000",
+      "file": "data/categories/15.json.gz"
+    },
+    {
+      "id": "16",
+      "name": "SEO & Content Systems",
+      "count": 5000,
+      "start": "P125001",
+      "end": "P130000",
+      "file": "data/categories/16.json.gz"
+    },
+    {
+      "id": "17",
+      "name": "Project Planning & Delivery",
+      "count": 5000,
+      "start": "P130001",
+      "end": "P135000",
+      "file": "data/categories/17.json.gz"
+    },
+    {
+      "id": "18",
+      "name": "Learning, Teaching & Skill Building",
+      "count": 5000,
+      "start": "P135001",
+      "end": "P140000",
+      "file": "data/categories/18.json.gz"
+    },
+    {
+      "id": "19",
+      "name": "Career, Resume & Interviews",
+      "count": 5000,
+      "start": "P140001",
+      "end": "P145000",
+      "file": "data/categories/19.json.gz"
+    },
+    {
+      "id": "20",
+      "name": "Productivity & Knowledge Systems",
+      "count": 5000,
+      "start": "P145001",
+      "end": "P150000",
+      "file": "data/categories/20.json.gz"
+    }
+  ],
+  "index_shape": [
+    "id",
+    "title",
+    "category_index",
+    "modes",
+    "subcategory",
+    "purpose"
+  ]
+}

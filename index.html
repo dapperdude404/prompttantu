@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0a1424" />
+  <meta name="description" content="PromptTantu — an offline-ready prompt workbench with 100,050 templates, 20 categories, favorites and AI workflow recipes." />
+  <title>PromptTantu — Weave better prompts</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="assets/app.css" />
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#library" aria-label="PromptTantu home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M8 11h24M8 20h24M8 29h24M12 7v26M20 7v26M28 7v26" stroke="currentColor" stroke-width="2.9" stroke-linecap="round"/><path d="M8 11h24M8 29h24" stroke="#a997ff" stroke-width="2.9" stroke-linecap="round"/></svg></span>
+        <span><strong>PromptTantu</strong><small>Weave better prompts</small></span>
+      </a>
+      <div class="sidebar-caption">WORKSPACE</div>
+      <nav class="nav-list" aria-label="Workspace">
+        <button class="nav-button active" data-view="library"><span aria-hidden="true">▦</span> Explore Library <span class="nav-trail">›</span></button>
+        <button class="nav-button" data-view="favorites"><span aria-hidden="true">♡</span> My Favorites <span class="nav-trail" id="favCount">0</span></button>
+        <button class="nav-button" data-view="workflows"><span aria-hidden="true">⇄</span> Workflow Studio <span class="nav-trail">›</span></button>
+        <button class="nav-button" data-view="my-prompts"><span aria-hidden="true">✧</span> My Prompts <span class="nav-trail" id="ownCount">0</span></button>
+      </nav>
+      <div class="sidebar-caption category-heading">CATEGORIES <span id="categoryTinyCount">20</span></div>
+      <nav id="categoryNav" class="category-nav" aria-label="Prompt categories"></nav>
+      <div class="sidebar-bottom">
+        <div class="mini-status"><span class="online-dot"></span><span id="syncText">Local-first workspace</span></div>
+        <div class="sidebar-note">Your favorites and custom prompts stay in this browser. No account or API key required.</div>
+        <a class="github-small" href="https://github.com/dapperdude404" target="_blank" rel="noopener noreferrer">GitHub · dapperdude404 ↗</a>
+      </div>
+    </aside>
+
+    <div class="main-column">
+      <header class="topbar">
+        <button class="mobile-menu icon-button" id="menuButton" aria-label="Open navigation">☰</button>
+        <div class="breadcrumbs"><span>Workspace</span><span class="chevron">/</span><strong id="viewCrumb">Explore Library</strong></div>
+        <div class="top-actions">
+          <span class="chip status-chip"><span class="online-dot"></span><span id="libraryStatus">Initializing...</span></span>
+          <button id="themeButton" class="icon-button" title="Toggle light/dark theme" aria-label="Toggle theme">◐</button>
+          <button id="importButton" class="button button-quiet" title="Import prompts">↥ <span>Import</span></button>
+        </div>
+      </header>
+
+      <main id="app-main" class="content">
+        <section class="hero" aria-labelledby="heroTitle">
+          <div class="hero-copy">
+            <span class="eyebrow"><span class="eyebrow-star">✦</span> THE CREATIVE PROMPT WORKSPACE</span>
+            <h1 id="heroTitle">Every great idea<br/><span>begins with a prompt.</span></h1>
+            <p>Search a library of 100,050 ready-to-adapt prompts. Shape them with your own context, then carry your best work into ChatGPT, Gemini, or your favorite AI tool.</p>
+            <div class="hero-buttons">
+              <button id="browseButton" class="button button-primary">Explore prompts <span aria-hidden="true">↗</span></button>
+              <button id="workflowButton" class="button button-glass">Open Workflow Studio <span aria-hidden="true">⇄</span></button>
+            </div>
+          </div>
+          <div class="hero-ornament" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="center-glyph">✳</div><span class="spark one">✦</span><span class="spark two">✧</span></div>
+        </section>
+
+        <section class="stats-grid" aria-label="Library statistics">
+          <div class="stat-card"><div class="stat-label">Prompt collection</div><div class="stat-value" id="statTotal">100,050</div><div class="stat-note">Sequential, searchable IDs</div></div>
+          <div class="stat-card"><div class="stat-label">Specialized topics</div><div class="stat-value" id="statCategories">20</div><div class="stat-note">From photo edits to code</div></div>
+          <div class="stat-card"><div class="stat-label">Saved favorites</div><div class="stat-value" id="statFavorites">0</div><div class="stat-note">Stored on your device</div></div>
+          <div class="stat-card"><div class="stat-label">Personal prompts</div><div class="stat-value" id="statOwn">0</div><div class="stat-note">Create and export anytime</div></div>
+        </section>
+
+        <section id="libraryView" class="workspace-view">
+          <div class="section-heading"><div><span class="kicker">YOUR LIBRARY</span><h2>Find your next breakthrough.</h2><p>Search by ID, topic, scenario, or slash-command mode.</p></div><button id="randomButton" class="button button-quiet">⚄ Surprise me</button></div>
+          <div class="filter-panel"><label class="search-field"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Try ‘realistic photo’, ‘Gemini’, ‘IEEE’, ‘/debug’ or P50001" autocomplete="off" aria-label="Search prompts"/><kbd>/</kbd></label>
+            <div class="filters-row"><label>Category <select id="categorySelect" aria-label="Filter by category"><option value="all">All categories</option></select></label><label>Mode <select id="modeSelect" aria-label="Filter by slash mode"><option value="all">All modes</option></select></label><label>Sort <select id="sortSelect" aria-label="Sort results"><option value="asc">ID: Low to high</option><option value="desc">ID: High to low</option></select></label><button id="resetFilters" class="text-button">Clear filters</button></div>
+          </div>
+          <div class="results-head"><div><h3 id="resultsTitle">Explore prompts</h3><span id="resultsSummary">Loading catalog...</span></div><span class="helper-tag">Click a prompt to customize ↗</span></div>
+          <div id="promptGrid" class="prompt-grid"><div class="loading-card">Loading your prompt library…</div></div>
+          <div id="pagination" class="pagination"></div>
+        </section>
+
+        <section id="favoritesView" class="workspace-view" hidden><div class="section-heading"><div><span class="kicker">CURATED BY YOU</span><h2>Your saved prompts</h2><p>Favorites are stored only in this browser.</p></div><button id="exportFavoritesButton" class="button button-quiet">↓ Export favorites</button></div><div id="favoritesGrid" class="prompt-grid"></div></section>
+        <section id="workflowsView" class="workspace-view" hidden><div class="section-heading"><div><span class="kicker">GEMINI • CHATGPT • NOTEBOOKLM</span><h2>Workflow Studio</h2><p>Combine AI tools with quality gates, reusable handoffs, and human approval steps.</p></div></div><div id="workflowGrid" class="workflow-grid"></div><div class="workflow-footnote">These are prompt-and-process recipes, not live integrations. No API keys or paid operations are required.</div></section>
+        <section id="myPromptsView" class="workspace-view" hidden><div class="section-heading"><div><span class="kicker">PERSONAL COLLECTION</span><h2>Make this library yours.</h2><p>Add prompts, export backups, and import your future weekly batches.</p></div><button id="exportCustomButton" class="button button-quiet">↓ Export collection</button></div><form id="newPromptForm" class="new-prompt-form"><h3>Create a custom prompt</h3><div class="form-two"><label>Title<input id="customTitle" required maxlength="140" placeholder="e.g., Restore a damaged family photo" /></label><label>Slash modes<input id="customModes" placeholder="/professional /stepbystep" /></label></div><label>Prompt template<textarea id="customTemplate" required rows="5" placeholder="TASK: ...\nINPUTS: [[SOURCE]], [[GOAL]] ..."></textarea></label><label>Purpose<input id="customPurpose" placeholder="What problem does it solve?"/></label><div class="align-end"><button class="button button-primary" type="submit">+ Save custom prompt</button></div></form><div id="customGrid" class="prompt-grid"></div></section>
+        <footer class="footer"><span>PromptTantu © 2026 · Made for creators, learners & builders</span><span>Local-first • Open-source ready • v1.0</span></footer>
+      </main>
+    </div>
+  </div>
+
+  <dialog id="detailDialog" class="detail-dialog" aria-labelledby="detailTitle">
+    <form method="dialog"><button class="detail-close" aria-label="Close details">×</button></form>
+    <div class="detail-inner">
+      <div class="detail-topline"><span class="eyebrow" id="detailId"></span><button id="detailFav" class="button button-quiet" type="button">♡ Save</button></div>
+      <h2 id="detailTitle">Prompt title</h2><p id="detailPurpose" class="detail-purpose"></p><div id="detailModes" class="mode-pills"></div>
+      <div class="detail-label-row"><label for="templateEdit">Prompt editor</label><button id="restoreTemplate" class="text-button">Restore original</button></div>
+      <textarea id="templateEdit" class="editor-textarea" spellcheck="false" rows="11"></textarea>
+      <div id="variablesSection"><h3>Fill placeholders <small>(optional)</small></h3><div id="variableFields" class="variable-fields"></div></div>
+      <div class="detail-label-row"><label for="previewArea">Ready-to-copy result</label><span class="preview-hint">Edited locally · Nothing sent to an API</span></div><textarea id="previewArea" class="preview-textarea" rows="9" readonly></textarea>
+      <div class="detail-actions"><button id="copyTemplate" type="button" class="button button-quiet">Copy template</button><button id="copyReady" type="button" class="button button-primary">Copy ready prompt ↗</button></div>
+      <div class="detail-example"><h3>Practical example</h3><p id="detailExample"></p></div>
+      <div class="send-links">Paste your copied prompt into <a target="_blank" rel="noopener noreferrer" href="https://gemini.google.com/app">Gemini ↗</a> <a target="_blank" rel="noopener noreferrer" href="https://chatgpt.com/">ChatGPT ↗</a> or your preferred AI app.</div>
+    </div>
+  </dialog>
+  <dialog id="importDialog" class="small-dialog" aria-labelledby="importHeading"><form method="dialog"><button class="detail-close" aria-label="Close import dialog">×</button></form><div class="detail-inner"><span class="kicker">BRING YOUR OWN PROMPTS</span><h2 id="importHeading">Import a prompt file</h2><p class="muted">Choose a JSON or JSONL file. Supports a single prompt, an array, or one JSON object per line. Keep your source ZIP extracted first.</p><input id="importFile" type="file" accept=".json,.jsonl,application/json"/><p id="importMessage" class="import-message" role="status"></p><p class="muted small">For safety, imported content stays local to your device. Files are not uploaded to a server.</p></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="mobile-backdrop" id="mobileBackdrop" hidden></div>
+</body>
+</html>
